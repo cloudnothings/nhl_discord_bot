@@ -1,7 +1,7 @@
-.\venv\
+/venv/
 results.txt
 results.json
-.\idea\
+
 /.idea/misc.xml
 /.idea/modules.xml
 /.idea/nhl.iml
