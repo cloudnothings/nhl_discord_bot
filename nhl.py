@@ -24,8 +24,13 @@ class NHL(commands.Cog):
     @commands.command(name='rawdata')
     async def _rawdata(self, ctx, club_id: str = None):
         async with ctx.typing():
-            message = await self.get_match_data(club_id)
-        await ctx.send(message)
+            data = await self.get_match_data(club_id)
+            data = json.dumps(data)
+            if len(data) >= 500:
+                data = create_text_file(data, 'results')
+        if isinstance(data, File):
+            await ctx.send(file=data)
+        await ctx.send(data)
 
     @classmethod
     async def get_match_data(cls, club_id):
